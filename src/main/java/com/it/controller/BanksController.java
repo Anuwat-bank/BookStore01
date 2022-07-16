@@ -21,7 +21,7 @@ public class BanksController {
 
 	@Autowired
 	private BankService bankService;
-
+ 
 	@GetMapping
 	public ResponseEntity<Object> getAllBanks() {
 		return ResponseEntity.ok(bankService.findBanksAll());
