@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -54,6 +56,7 @@ public class ReasonEntity implements  Serializable {
 	
 	@CreationTimestamp
 	@Column(name="creat_date" , nullable = false , updatable = false)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
     private Timestamp creatDate;
 	
 	@Column(name="update_by")
@@ -61,5 +64,8 @@ public class ReasonEntity implements  Serializable {
 	
 	@UpdateTimestamp
 	@Column(name="update_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
     private Timestamp updateDate;
+
+	
 }

@@ -8,9 +8,9 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.it.dto.BanksDTO;
 import com.it.dto.RefundsDTO;
-
+import com.it.entity.BankEntity;
 import com.it.entity.RefundEntity;
 import com.it.repository.RefundRepository;
 
@@ -77,6 +77,14 @@ public class RefundService {
 		    e.printStackTrace();
 		}
 		return deleteFlg;
+	}
+	
+	public List<RefundsDTO> findRefundsByUserId(Integer userId) {
+		List<RefundEntity> refOnt = refundRepository.findByUserId(userId);
+		if (null != refOnt) {
+			return modelMapper.map(refOnt, new TypeToken <List<RefundsDTO>>() {}.getType());
+		}
+		return null;
 	}
 
 	

@@ -1,7 +1,7 @@
 package com.it.entity;
 
 import java.io.Serializable;
-import java.sql.Blob;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,7 +46,7 @@ public class BankEntity implements Serializable {
 	private String numberBank;
 
 	@Column(name = "qr_code")
-	private Blob qrCode;
+	private String qrCode;
 
 	@Column(name = "name")
 	private String name;
@@ -54,16 +56,20 @@ public class BankEntity implements Serializable {
 
 	@Column(name = "creat_by")
 	private String creatBy;
-
+	
 	@CreationTimestamp
-	@Column(name = "creat_date", nullable = false, updatable = false)
-	private Timestamp creatDate;
-
-	@Column(name = "update_by")
-	private String updateBy;
-
+	@Column(name="creat_date" , nullable = false , updatable = false)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
+    private Timestamp creatDate;
+	
+	@Column(name="update_by")
+    private String updateBy;
+	
 	@UpdateTimestamp
-	@Column(name = "update_date")
-	private Timestamp updateDate;
+	@Column(name="update_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
+    private Timestamp updateDate;
+
+	
 
 }

@@ -37,6 +37,15 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	public UserDTO getByUserNamePassword(String username, String password) {
+		UserEntity userOnt = userRepository.getByUserNamePassword(username,password);
+		if (userOnt !=null) {
+			return modelMapper.map(userOnt, new TypeToken<UserDTO>() {
+			}.getType());
+		}
+		return null;
+	}
 
 	public boolean saveUserAll(UserDTO userDTO) {
 		boolean saveFlg = false;
@@ -79,5 +88,14 @@ public class UserService {
 		}
 		return deleteFlg;
 	}
+	
+	public List<UserDTO> findAllByRoleId(Integer roleId) {
+		List<UserEntity> userEntities = userRepository.getAllByRoleId(roleId);
+		return modelMapper.map(userEntities, new TypeToken<List<UserDTO>>() {
+		}.getType());
+	}
+	
+	
+	
 
 }

@@ -7,8 +7,7 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -38,7 +37,7 @@ public class PaymentEntity  implements  Serializable {
 
 	@Id
 	@Column(name = "tran_sec_id")
-	private String tranSecId;
+	private Integer tranSecId;
 	
 	@Column(name = "user_id")
 	private Integer userId;
@@ -58,11 +57,11 @@ public class PaymentEntity  implements  Serializable {
 	@Column(name = "order_id")
 	private Integer orderId;
 	
-	@Column(name = "trank_id")
-	private Integer trankId;
+	@Column(name = "track_id")
+	private Integer trackId;
 	
 	@Column(name = "pay_image")
-	private Blob payImage;
+	private String payImage;
 	
 	@Column(name = "post_name")
 	private String postName;
@@ -81,6 +80,7 @@ public class PaymentEntity  implements  Serializable {
 	
 	@CreationTimestamp
 	@Column(name="creat_date" , nullable = false , updatable = false)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
     private Timestamp creatDate;
 	
 	@Column(name="update_by")
@@ -88,6 +88,7 @@ public class PaymentEntity  implements  Serializable {
 	
 	@UpdateTimestamp
 	@Column(name="update_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
     private Timestamp updateDate;
 
 	

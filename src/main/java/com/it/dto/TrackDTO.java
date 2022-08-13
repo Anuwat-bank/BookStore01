@@ -1,6 +1,6 @@
 package com.it.dto;
 
-import java.sql.Blob;
+
 
 import lombok.Data;
 
@@ -8,12 +8,10 @@ import lombok.Data;
 public class TrackDTO {
 	private Integer trackId;
 
-	private Integer userId;
 
-	private Integer cId;
 
 	private String trackDesc;
 
-	private Blob trackImage;
+	private String trackImage;
 
 }

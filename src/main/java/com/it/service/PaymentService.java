@@ -28,10 +28,10 @@ public class PaymentService {
 		return modelMapper.map(payEntities, new TypeToken<List<PaymentsDTO>>() {}.getType());
 	}
 	
-	public PaymentsDTO findPaymentsByPayId(String tranSecId) {
-		Optional<PaymentEntity> payOnt = paymemtRepository.findById(tranSecId);
-		if (payOnt.isPresent()) {
-			return modelMapper.map(payOnt.get(), new TypeToken<PaymentsDTO>() {}.getType());
+	public PaymentsDTO findPaymentsByOrderId(Integer orderId) {
+		PaymentEntity payOnt = paymemtRepository.findPaymentByOrderId(orderId);
+		if (payOnt != null) {
+			return modelMapper.map(payOnt, new TypeToken<PaymentsDTO>() {}.getType());
 		}
 		return null;
 	}
@@ -48,7 +48,7 @@ public class PaymentService {
         return saveFlg;
     }
 	
-	public boolean updatePayment(String tranSecId, PaymentsDTO paymentsDTO) {
+	public boolean updatePayment(Integer tranSecId, PaymentsDTO paymentsDTO) {
 		boolean updateFlg  = false;
 		try {
 			Optional<PaymentEntity> payOnt = paymemtRepository.findById(tranSecId);
@@ -66,7 +66,7 @@ public class PaymentService {
 		
 	}
 	
-	public boolean deletePayment(String tranSecId) {
+	public boolean deletePayment(Integer tranSecId) {
 		boolean deleteFlg = false;
 		try {
 			paymemtRepository.deleteById(tranSecId);

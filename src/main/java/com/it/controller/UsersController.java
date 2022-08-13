@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.it.dto.UserDTO;
@@ -26,11 +27,21 @@ public class UsersController {
 	public ResponseEntity<Object> getAllUsers() {
 		return ResponseEntity.ok(userService.findUserAll());
 	}
+	
+	@GetMapping("/roleId")
+	public ResponseEntity<Object> getAllByRoleId(@RequestParam Integer  roleId) {
+		return ResponseEntity.ok(userService.findAllByRoleId(roleId));
+	}
 
 	@GetMapping("/{userId}")
 	public ResponseEntity<Object> getById(@PathVariable(name = "userId") Integer userId) {
 
 		return ResponseEntity.ok(userService.findUserByuserId(userId));
+	}
+	
+	@GetMapping("/{username}/{password}")
+	public ResponseEntity<Object> getByUserNamePassword(@PathVariable(name = "username") String  username, @PathVariable(name = "password") String  password ) {
+		return ResponseEntity.ok(userService.getByUserNamePassword(username,password));
 	}
 
 	@PostMapping

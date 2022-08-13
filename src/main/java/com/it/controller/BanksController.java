@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.it.dto.BanksDTO;
@@ -21,7 +22,7 @@ public class BanksController {
 
 	@Autowired
 	private BankService bankService;
- 
+  
 	@GetMapping
 	public ResponseEntity<Object> getAllBanks() {
 		return ResponseEntity.ok(bankService.findBanksAll());
@@ -46,6 +47,11 @@ public class BanksController {
 	@DeleteMapping("/{bankId}")
 	public ResponseEntity<Object> deleteById(@PathVariable(name = "bankId") Integer bankId) {
 		return ResponseEntity.ok(bankService.deleteBank(bankId));
+	}
+	
+	@GetMapping("/userId")
+	public ResponseEntity<Object> getAllByUserId(@RequestParam Integer  userId) {
+		return ResponseEntity.ok(bankService.findBanksByUserId(userId));
 	}
 
 }

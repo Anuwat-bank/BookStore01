@@ -1,7 +1,7 @@
 package com.it.entity;
 
 import java.io.Serializable;
-import java.sql.Blob;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,17 +39,12 @@ public class TrackEntity implements Serializable {
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private Integer trackId;
 	 
-	 @Column(name = "user_id")
-	 private Integer userId;
-	 
-	 @Column(name = "c_id")
-	 private Integer cId;
 	 
 	 @Column(name = "track_desc")
 	 private String trackDesc;
 	 
 	 @Column(name = "track_image")
-	 private Blob trackImage;
+	 private String trackImage;
 	 
 	 @Column(name="record_status")
 	 private String recordStatus;
@@ -57,13 +54,16 @@ public class TrackEntity implements Serializable {
 		
 		@CreationTimestamp
 		@Column(name="creat_date" , nullable = false , updatable = false)
-	 private Timestamp creatDate;
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
+	    private Timestamp creatDate;
 		
 		@Column(name="update_by")
-	 private String updateBy;
+	    private String updateBy;
 		
 		@UpdateTimestamp
 		@Column(name="update_date")
-	 private Timestamp updateDate;
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
+	    private Timestamp updateDate;
 
+		
 }

@@ -1,7 +1,7 @@
 package com.it.entity;
 
 import java.io.Serializable;
-import java.sql.Blob;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,8 +40,8 @@ public class UserDetailEntity implements Serializable {
 	 @Column(name = "user_detail_id")
 	 private Integer userDetailId;
 	 
-	 @Column(name = "username" )
-	 private String username;
+	 @Column(name = "user_id" )
+	 private Integer userId;
 	 
 	 @Column(name = "frist_name")
 	 private String fristName;
@@ -51,7 +53,10 @@ public class UserDetailEntity implements Serializable {
 	 private String cName;
 	 
 	 @Column(name = "c_document")
-	 private Blob cDocument;
+	 private String cDocument;
+	 
+	 @Column(name = "c_id")
+	 private Integer cId;
 	 
 	 @Column(name = "gender")
 	 private String gender;
@@ -75,13 +80,13 @@ public class UserDetailEntity implements Serializable {
 	 private Integer pcode;
 	 
 	 @Column(name = "user_phone")
-	 private Integer userPhone;
+	 private String userPhone;
 	 
 	 @Column(name = "user_email")
 	 private String userEmail;
 	 
 	 @Column(name = "user_imege")
-	 private Blob userImege;
+	 private String userImege;
 	 
 	 @Column(name="record_status")
 	 private String recordStatus;
@@ -90,14 +95,18 @@ public class UserDetailEntity implements Serializable {
 	 private String creatBy;
 		
 	 @CreationTimestamp
-	 @Column(name="creat_date" , nullable = false , updatable = false)
-	 private Timestamp creatDate;
+		@Column(name="creat_date" , nullable = false , updatable = false)
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
+	    private Timestamp creatDate;
 		
-	 @Column(name="update_by")
-	 private String updateBy;
+		@Column(name="update_by")
+	    private String updateBy;
 		
-	 @UpdateTimestamp
-	 @Column(name="update_date")
-	 private Timestamp updateDate; 
+		@UpdateTimestamp
+		@Column(name="update_date")
+		@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
+	    private Timestamp updateDate;
+
+		
 
 }

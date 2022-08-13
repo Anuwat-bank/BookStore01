@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -50,5 +51,10 @@ public class RefundsController {
 	@DeleteMapping("/{rfId}")
 	public ResponseEntity<Object> deleteById(@PathVariable(name = "rfId") Integer rfId){
 		return ResponseEntity.ok(refundService.deleteRefun(rfId));
+	}
+	
+	@GetMapping("/userId")
+	public ResponseEntity<Object> getAllByUserId(@RequestParam Integer  userId) {
+		return ResponseEntity.ok(refundService.findRefundsByUserId(userId));
 	}
 }

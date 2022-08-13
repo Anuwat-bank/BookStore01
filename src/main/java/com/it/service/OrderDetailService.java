@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 
 
 import com.it.dto.OrderDetailsDTO;
-
+import com.it.dto.UserDetailsDTO;
 import com.it.entity.OrderDetailEntity;
+import com.it.entity.UserDetailEntity;
 import com.it.repository.OrderDetailRepository;
 
 @Service
@@ -29,13 +30,15 @@ public class OrderDetailService {
 	}
 	
 	
-	public OrderDetailsDTO findOrderdetailByorderDetailId(Integer orderDetailId) {
-		Optional<OrderDetailEntity> orderDeOnt = orderDetailRepository.findById(orderDetailId);
-		if (orderDeOnt.isPresent()) {
-			return modelMapper.map(orderDeOnt.get(), new TypeToken<OrderDetailsDTO>() {}.getType());
+	public OrderDetailsDTO findOrderdetailByorderDetailId(Integer orderId) {
+		OrderDetailEntity orderDeOnt = orderDetailRepository.findByOrderId(orderId);
+		if (orderDeOnt != null) {
+			return modelMapper.map(orderDeOnt, new TypeToken<OrderDetailsDTO>() {}.getType());
 		}
 		return null;
 	}
+	
+
 	
 	public boolean saveOrderDetail(OrderDetailsDTO orderDetailsDTO) {
         boolean saveFlg = false;

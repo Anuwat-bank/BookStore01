@@ -74,4 +74,12 @@ public class BankService {
 		}
 		return deleteFlg;
 	}
+	
+	public List<BanksDTO> findBanksByUserId(Integer userId) {
+		List<BankEntity> bankOnt = bankRepository.findByUserId(userId);
+		if (null != bankOnt) {
+			return modelMapper.map(bankOnt, new TypeToken <List<BanksDTO>>() {}.getType());
+		}
+		return null;
+	}
 }

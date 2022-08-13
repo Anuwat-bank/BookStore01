@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.it.dto.OrdersDTO;
@@ -40,6 +41,11 @@ public class OrdersController {
 		return ResponseEntity.ok(orderService.findOrderById(orderId));	
 	}
 	
+	@GetMapping("/recordStatus")
+	public ResponseEntity<Object> getAllByStatus(@RequestParam String  recordStatus) {
+		return ResponseEntity.ok(orderService.findAllByRecord(recordStatus));
+	}
+	
 	@PostMapping
 	public ResponseEntity<Object> saveOrders(@RequestBody OrdersDTO ordersDto){
 		return ResponseEntity.ok(orderService.saveOrder(ordersDto));
@@ -54,6 +60,12 @@ public class OrdersController {
 	public ResponseEntity<Object> deleteById(@PathVariable(name = "orderId") Integer orderId){
 		return ResponseEntity.ok(orderService.deleteOrder(orderId));
 	}
+	
+	//@GetMapping("/{cId}")
+	//public ResponseEntity<Object> getBycId(@PathVariable(name = "cId") Integer cId){
+	
+		//return ResponseEntity.ok(orderService.findAllBycId(cId));	
+	//}
 	
 
 }

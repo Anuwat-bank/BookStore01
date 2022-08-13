@@ -1,6 +1,6 @@
 package com.it.dto;
 
-import java.sql.Blob;
+
 
 
 import lombok.Data;
@@ -12,7 +12,7 @@ public class BanksDTO {
 	private Integer userId;
 	private String bankName;
 	private String numberBank;
-	private Blob qrCode;
+	private String qrCode;
 	private String name;
 	
 

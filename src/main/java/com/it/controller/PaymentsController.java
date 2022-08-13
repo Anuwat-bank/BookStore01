@@ -33,9 +33,8 @@ public class PaymentsController {
 	}
 	
 	@GetMapping("/{tranSecId}")
-	public ResponseEntity<Object> getById(@PathVariable(name = "tranSecId") String tranSecId){
-		
-		return ResponseEntity.ok(paymentService.findPaymentsByPayId(tranSecId));
+	public ResponseEntity<Object> getById(@PathVariable(name = "tranSecId") Integer orderId){
+		return ResponseEntity.ok(paymentService.findPaymentsByOrderId(orderId));
 	}
 	
 	@PostMapping
@@ -44,12 +43,12 @@ public class PaymentsController {
 	}
 	
 	@PutMapping("/{tranSecId}")
-	public ResponseEntity<Object> updatePayments(@PathVariable(name = "tranSecId") String tranSecId, @RequestBody PaymentsDTO paymentsDTO){
+	public ResponseEntity<Object> updatePayments(@PathVariable(name = "tranSecId") Integer tranSecId, @RequestBody PaymentsDTO paymentsDTO){
 		return ResponseEntity.ok(paymentService.updatePayment(tranSecId, paymentsDTO));
 	}
 	
 	@DeleteMapping("/{tranSecId}")
-	public ResponseEntity<Object> deleteById(@PathVariable(name = "tranSecId") String tranSecId){
+	public ResponseEntity<Object> deleteById(@PathVariable(name = "tranSecId") Integer tranSecId){
 		return ResponseEntity.ok(paymentService.deletePayment(tranSecId));
 	}
 }

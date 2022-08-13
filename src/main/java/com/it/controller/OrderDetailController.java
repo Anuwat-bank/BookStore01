@@ -33,9 +33,8 @@ public class OrderDetailController {
 	}
 	
 	@GetMapping("/{orderDetailId}")
-	public ResponseEntity<Object> getById(@PathVariable(name = "orderDetailId") Integer orderDetailsId){
-		
-		return ResponseEntity.ok(orderDetailService.findOrderdetailByorderDetailId(orderDetailsId));	
+	public ResponseEntity<Object> getById(@PathVariable(name = "orderDetailId") Integer orderId){
+		return ResponseEntity.ok(orderDetailService.findOrderdetailByorderDetailId(orderId));	
 	}
 	
 	@PostMapping

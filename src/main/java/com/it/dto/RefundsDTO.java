@@ -1,6 +1,6 @@
 package com.it.dto;
 
-import java.sql.Blob;
+
 
 import lombok.Data;
 
@@ -15,6 +15,8 @@ public class RefundsDTO {
 
 	private Integer reId;
 
-	private Blob reImage;
+	private String rfImage;
+	
+	 private Integer recordStatus;
 
 }

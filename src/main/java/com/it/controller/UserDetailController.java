@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.it.dto.UserDetailsDTO;
@@ -34,6 +35,12 @@ public class UserDetailController {
 
 		return ResponseEntity.ok(userDetailService.findUserDetailByuserDetailId(userDetailId));
 	}
+	
+	@GetMapping("/recordStatus")
+	public ResponseEntity<Object> getAllByStatus(@RequestParam String  recordStatus) {
+		return ResponseEntity.ok(userDetailService.findAllByStatus(recordStatus));
+	}
+	
 
 	@PostMapping
 	public ResponseEntity<Object> saveUserDetail(@RequestBody UserDetailsDTO userDetailsDto) {
@@ -50,4 +57,10 @@ public class UserDetailController {
 	public ResponseEntity<Object> deleteByUserDetailId(@PathVariable(name = "userDetailId") Integer userDetailId) {
 		return ResponseEntity.ok(userDetailService.deleteUserDetailByUserDetailId(userDetailId));
 	}
+	
+	@GetMapping("/userId")
+	public ResponseEntity<Object> getUserDetailByUserId(@RequestParam(name = "userId") Integer userId) {
+		return ResponseEntity.ok(userDetailService.findUserDetailByUserId(userId));
+	}
+	
 }

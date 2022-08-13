@@ -1,7 +1,5 @@
 package com.it.dto;
 
-import java.sql.Blob;
-
 import lombok.Data;
 
 @Data
@@ -9,7 +7,7 @@ public class UserDetailsDTO {
 
 	private Integer userDetailId;
 
-	private String username;
+	private Integer userId;
 
 	private String fristName;
 
@@ -17,7 +15,7 @@ public class UserDetailsDTO {
 
 	private String cName;
 
-	private Blob cDocument;
+	private String cDocument;
 
 	private String gender;
 
@@ -33,10 +31,22 @@ public class UserDetailsDTO {
 
 	private Integer pcode;
 
-	private Integer userPhone;
+	private String userPhone;
 
 	private String userEmail;
 
-	private Blob userImege;
+	private String userImege;
+	
+	private String username;
+	
+	private String password;
+	
+	private Integer roleId;
+	
+	private Integer cId;
+	
+	private String recordStatus;
+	
+	
 
 }

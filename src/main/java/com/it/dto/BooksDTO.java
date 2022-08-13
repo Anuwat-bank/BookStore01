@@ -17,10 +17,12 @@ public class BooksDTO {
 	private String bAunthor;
 
 	private Integer cateId;
+	
+	private String bDesc;
 
 	private BigDecimal bPrice;
 
-	private Blob bImage;
+	private String bImage;
 
 	private String bStock;
 

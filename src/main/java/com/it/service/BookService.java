@@ -77,4 +77,18 @@ public class BookService {
 		}
 		return deleteFlg;
 	}
+	
+	//public boolean saveBookBycid(BooksDTO booksDTO , Integer cId) {
+        //boolean saveFlg = false;
+        //try {
+        	
+        	//BookEntity entity = modelMapper.map(booksDTO, BookEntity.class,cId);
+            //bookRepository.saveBookBycId(cId);
+            //saveFlg = true;
+        //} catch (Exception e) {
+          //  e.printStackTrace();
+        //}
+        //return saveFlg;
+    //}
+	
 }

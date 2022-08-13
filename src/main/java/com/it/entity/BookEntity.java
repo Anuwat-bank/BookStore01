@@ -2,7 +2,7 @@ package com.it.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Blob;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -10,10 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,18 +26,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Builder
 @Data
 @Table(name = "tb_book")
-@AllArgsConstructor
-@NoArgsConstructor
-public class BookEntity implements Serializable {
+public class BookEntity  {
 
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3920728675850118221L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,7 +56,7 @@ public class BookEntity implements Serializable {
 	private String bDesc;
 	
 	@Column(name ="b_image")
-	private Blob bImage;
+	private String bImage;
 	
 	@Column(name = "b_stock")
 	private String bStock;
@@ -68,9 +66,9 @@ public class BookEntity implements Serializable {
 	
 	@Column(name="creat_by")
     private String creatBy;
-	
 	@CreationTimestamp
 	@Column(name="creat_date" , nullable = false , updatable = false)
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
     private Timestamp creatDate;
 	
 	@Column(name="update_by")
@@ -78,9 +76,8 @@ public class BookEntity implements Serializable {
 	
 	@UpdateTimestamp
 	@Column(name="update_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" )
     private Timestamp updateDate;
-	
-	
 	
 	
 }

@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 
 
 import com.it.dto.OrdersDTO;
-
+import com.it.dto.UserDTO;
+import com.it.entity.OrderDetailEntity;
 import com.it.entity.OrderEntity;
+import com.it.entity.UserEntity;
+import com.it.repository.OrderDetailRepository;
 import com.it.repository.OrderRepository;
 
 @Service
@@ -22,6 +25,9 @@ public class OrderService {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private OrderDetailRepository orderDetailRepository;
 	
 	public List<OrdersDTO> findOrderAll(){
 		List<OrderEntity> orderEntities = orderRepository.findAll();
@@ -41,7 +47,14 @@ public class OrderService {
         boolean saveFlg = false;
         try {
         	OrderEntity entity = modelMapper.map(ordersDTO, OrderEntity.class);
-            orderRepository.save(entity);
+        	entity = orderRepository.save(entity);
+        	
+        	OrderDetailEntity entityDetail = modelMapper.map(ordersDTO, OrderDetailEntity.class);
+        	entityDetail.setOrderId(entity.getOrderId());
+            orderDetailRepository.save(entityDetail);
+        	
+        	
+        	
             saveFlg = true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,6 +90,18 @@ public class OrderService {
 		return deleteFlg;
 	}
 	
+	public List<OrdersDTO> findAllByRecord(String recordStatus) {
+		List<OrderEntity> userEntities = orderRepository.getAllOrderByRecord(recordStatus);
+		return modelMapper.map(userEntities, new TypeToken<List<OrdersDTO>>() {
+		}.getType());
+	}
+	
+	//public List<OrdersDTO> findAllBycId(Integer cId) {
+		//List<OrderEntity> userEntities = orderRepository.getAllOrderBycId(cId);
+		//return modelMapper.map(userEntities, new TypeToken<List<OrdersDTO>>() {
+		//}.getType());
+	//}
+	//
 }
 
 

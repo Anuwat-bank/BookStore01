@@ -18,7 +18,7 @@ public class PaymentsDTO implements Serializable{
 	 */
 	private static final long serialVersionUID = 302572114021294377L;
 
-	private String tranSecId;
+	private Integer tranSecId;
 
 	private Integer userId;
 
@@ -30,9 +30,9 @@ public class PaymentsDTO implements Serializable{
 
 	private Integer orderId;
 
-	private Integer trankId;
+	private Integer trackId;
 
-	private Blob payImage;
+	private String payImage;
 
 	private String postName;
 
@@ -40,6 +40,6 @@ public class PaymentsDTO implements Serializable{
 
 	private BigDecimal postAmount;
 	
-	 private String recordStatus;
+	private String recordStatus;
 
 }
